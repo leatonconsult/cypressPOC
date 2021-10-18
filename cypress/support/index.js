@@ -1,7 +1,4 @@
 // ***********************************************************
-// This example support/index.js is processed and
-// loaded automatically before your test files.
-//
 // This is a great place to put global configuration and
 // behavior that modifies Cypress.
 //
@@ -16,10 +13,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-var url = 'http://automationpractice.com/index.php'
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+var envs = "envs.json"
 
 before(function() {
 	// runs once before all tests in the block
@@ -28,8 +22,10 @@ before(function() {
 	
 beforeEach(function() {
 	// runs before each test in the block
-		cy.log('===== Script Start: ' + url)
-		cy.visit(url)
+		cy.fixture(envs).then((env)  => {	
+			cy.log('===== Script Start: ' + envs.dev)
+			cy.visit(env.dev)
+	  		})
 	})
 
 after(function() {
