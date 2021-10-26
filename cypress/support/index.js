@@ -13,7 +13,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-var envs = "envs.json"
+//var envs = "envs.json"
 
 before(function() {
 	// runs once before all tests in the block
@@ -22,8 +22,8 @@ before(function() {
 	
 beforeEach(function() {
 	// runs before each test in the block
-		cy.fixture(envs).then((env)  => {	
-			cy.log('===== Script Start: ' + envs.dev)
+		cy.fixture('envs').then((env)  => {	
+			cy.log('===== Script Start: ' + env.dev)
 			cy.visit(env.dev)
 	  		})
 	})
