@@ -5,7 +5,7 @@ var users = "users.json"
 describe('Login', () => {
   it('Authentication failed', () => {
 	  cy.fixture(users).then((user)  => {
-			cy.login(user.valid.username, user.valid.password)
+			cy.login(user.admin.username, user.admin.password)
 	  		})
 	  cy.contains('Authentication failed')
 	  })

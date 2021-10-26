@@ -1,6 +1,6 @@
 {
-	"valid": {
-		"username": "test@test.com",
+	"admin": {
+		"username": "admin@test.com",
 		"password": "password"
 	},
 	"invalidEmail": {
