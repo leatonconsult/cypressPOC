@@ -3,13 +3,13 @@ import '../support/login'
 describe('Login', () => {
   it('Authentication failed', () => {
 	  cy.login('admin')
-	  cy.contains('Authentication failed')
+	  cy.get('[class="alert alert-danger"]').should('include.text', 'Authentication failed')
 	  })
 })
 
 describe('Login', () => {
   it('Invalid email', () => {
 	  cy.login('invalidEmail')
-	  cy.contains('Invalid email address')
+	  cy.get('[class="alert alert-danger"]').should('include.text', 'Invalid email address')
 	  })
 })
