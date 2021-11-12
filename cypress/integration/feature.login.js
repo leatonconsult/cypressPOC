@@ -7,11 +7,9 @@ describe('Login', () => {
 	  })
 })
 
-/**
 describe('Login', () => {
   it('Invalid email', () => {
 	  cy.login('invalidEmail')
 	  cy.contains('Invalid email address')
 	  })
 })
-**/
