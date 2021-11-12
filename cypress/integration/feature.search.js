@@ -10,6 +10,7 @@ import '../support/search'
 describe('Search', () => {
   it('Expect no results', () => {
 	  cy.search('Mens Shirt')
+	  cy.get('[class="alert alert-warning"]').should('include.text', searchStr)
 	  cy.contains('0 results have been found')
   })
 })

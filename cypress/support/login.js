@@ -8,3 +8,7 @@ Cypress.Commands.add('login', (user) => {
 		})
 	cy.get('[id=SubmitLogin]').click()
 })
+
+Cypress.Commands.add('logout', () => { 
+	cy.get('[class=logout]').click()
+})
