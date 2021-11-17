@@ -1,4 +1,5 @@
 import { getDate } from "../support/utils";
+import { getDate2Years } from "../support/utils";
 
 describe("datePicker", () => {
   it("Type Date", () => {
