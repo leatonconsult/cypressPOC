@@ -1,8 +1,3 @@
-Cypress.Commands.add('setDate', () => { 
-	const date = getDate()
-	return date;
-})
-
 function getDate() {
 	const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEV"];
 	let today = new Date(),
@@ -12,4 +7,4 @@ function getDate() {
 		yyyy = today.getFullYear()
 	var date = (dd + "-" + mmm + "-" + yyyy)
 	return date;
-} export {getDate};
+} export { getDate }; 

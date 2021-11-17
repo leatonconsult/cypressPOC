@@ -5,8 +5,8 @@
 // check out the link below and learn how to write your first test:
 // https://on.cypress.io/writing-first-test
 
-import '../support/search'
-import '../support/utils'
+import '../support/search.js'
+import '../support/utils.js'
 
 describe('Search', () => {
   it('Expect no results', () => {

@@ -1,4 +1,4 @@
-import '../support/login'
+import '../support/login.js'
 
 describe('Login', () => {
   it('Authentication failed', () => {

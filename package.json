@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "cypress-commands": "^2.0.1",
-    "cypress-sql-server": "^1.0.0",
-    "mssql": "^7.2.1"
+    "cypress-sql-server": "^1.0.0"
   }
 }
