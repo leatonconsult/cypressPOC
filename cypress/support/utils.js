@@ -1,3 +1,7 @@
+Cypress.Command.add('setStartDate', () => { 
+	cy.get('[id=startDateField]').type(getDate());
+})
+
 function getDate() {
 	const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEV"];
 	let today = new Date(),
