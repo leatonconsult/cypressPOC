@@ -11,6 +11,8 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+require('cypress-commands');
+
 import './commands'
 
 //var envs = "envs.json"
@@ -25,6 +27,7 @@ beforeEach(function() {
 		cy.fixture('envs').then((env)  => {	
 			cy.log('===== Script Start: ' + env.dev)
 			cy.visit(env.dev)
+			//cy.visit('demo.automationtesting.in/Datepicker.html')
 	  		})
 	})
 

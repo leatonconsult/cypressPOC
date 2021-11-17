@@ -6,10 +6,12 @@
 // https://on.cypress.io/writing-first-test
 
 import '../support/search'
+import '../support/utils'
 
 describe('Search', () => {
   it('Expect no results', () => {
-	  cy.search('Mens Shirt')
+	  var searchStr = 'Mens Shirt'
+	  cy.search(searchStr)
 	  cy.get('[class="alert alert-warning"]').should('include.text', searchStr)
 	  cy.contains('0 results have been found')
   })

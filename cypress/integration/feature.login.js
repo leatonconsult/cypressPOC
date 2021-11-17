@@ -2,8 +2,9 @@ import '../support/login'
 
 describe('Login', () => {
   it('Authentication failed', () => {
+	  cy.log(cy.get('[class=login]').text())
 	  cy.login('admin')
-	  cy.get('[class="alert alert-danger"]').should('include.text', 'Authentication failed')
+	  cy.get('[class="alert alert-danger"]').should('include.text', 'Authentication failed')  
 	  })
 })
 
