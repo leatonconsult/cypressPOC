@@ -17,7 +17,8 @@ function getDate(nDays) {
 	var dateTest;
 	if (nDays == null) {
 		return dateTest = Date.today().toString("dd-MMM-yyyy")
-	} else if (nDays != null) {
+	//} else if (nDays != null) {
+	} else if (Number.isInteger(nDays)) {
 		return dateTest = Date.today()
 		.add(nDays).days()
 		.toString("dd-MMM-yyyy")

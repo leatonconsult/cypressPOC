@@ -12,8 +12,9 @@ import { getDate } from "../support/utils";
 describe('Search', () => {
   it('Expect no results', () => {
 	  //var searchStr = 'Mens Shirt'
-	  cy.search(getDate())
-	  cy.get('[class="alert alert-warning"]').should('include.text', getDate())
+	  const date = getDate(1094);
+	  cy.search(date)
+	  cy.get('[class="alert alert-warning"]').should('include.text', date)
 	  cy.contains('0 results have been found')
   })
 })
