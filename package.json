@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cypress-commands": "^2.0.1",
-    "cypress-sql-server": "^1.0.0"
+    "cypress-sql-server": "^1.0.0",
+    "datejs": "^1.0.0-rc3"
   }
 }
