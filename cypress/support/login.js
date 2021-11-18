@@ -1,5 +1,11 @@
-// Login Commands
+/**
+ * Login and logout functions
+ */
 
+/**
+ * @param user - pass in fixture file for user (filename)
+ * logs in the user based on fixture data
+ */
 Cypress.Commands.add('login', (user) => { 
 	cy.get('[class=login]').click()
 	cy.fixture(`users/${user}`).then((u)  => {
@@ -9,9 +15,9 @@ Cypress.Commands.add('login', (user) => {
 	cy.get('[id=SubmitLogin]').click()
 })
 
+/**
+ * logs user out
+ */
 Cypress.Commands.add('logout', () => { 
 	cy.get('[class=logout]').click()
 })
-
-
-const login = require('./login');
