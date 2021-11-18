@@ -9,12 +9,22 @@ Cypress.Commands.add('setEndDate', () => {
 
 
 /**
- * get date using datejs as dd-MMM-yyyy (18-Nov-2021)
+ *  @param nDays number of days to add (or subtract) from date eg 5 or -10
+ *  null == today
+ *  get date using datejs as dd-MMM-yyyy (18-Nov-2021)
  */
-function todaysDate() { 
-	const today = new Date().toString("dd-MMM-yyyy") 
-	return today;
-} export { todaysDate };
+function getDate(nDays) { 
+	var dateTest;
+	if (nDays == null) {
+		return dateTest = Date.today().toString("dd-MMM-yyyy")
+	} else if (nDays != null) {
+		return dateTest = Date.today()
+		.add(nDays).days()
+		.toString("dd-MMM-yyyy")
+	} else { 
+		throw new error('Unable to get date')
+	}
+} export { getDate };
 
 
 /**
@@ -30,6 +40,9 @@ function todaysDate2Years() {
  * get date using datejs -1 day +3 yearsas dd-MMM-yyyy (18-Nov-2021)
  */
 function todaysDate3Years() { 
-	const today = Date.today().add(-1).days().add(3).years().toString("dd-MMM-yyyy")
+	const today = Date.today()
+		.add(-1).days()
+		.add(3).years()
+		.toString("dd-MMM-yyyy")
 	return today;
 } export { todaysDate3Years };
