@@ -14,15 +14,14 @@ Cypress.Commands.add('setEndDate', () => {
  *  get date using datejs as dd-MMM-yyyy (18-Nov-2021)
  */
 function getDate(nDays) { 
-	var dateTest;
 	if (nDays == null) {
-		return dateTest = Date.today().toString("dd-MMM-yyyy")
+		return Date.today().toString("dd-MMM-yyyy")
 	} else if (Number.isInteger(nDays)) {
-		return dateTest = Date.today()
+		return Date.today()
 		.add(nDays).days()
 		.toString("dd-MMM-yyyy")
 	} else { 
-		throw new error('Unable to get date')
+		throw new Error('Unable to get date')
 	}
 } export { getDate };
 
