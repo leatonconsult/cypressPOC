@@ -30,13 +30,13 @@ Cypress.Commands.add('tableTextPresent', (searchStr) => {
 
 /**
  * @param searchStr
- * @returns finds and returns entire row data which contains searchStr
+ * @returns finds and returns entire row which contains searchStr
  */
-function getRow(searchStr) {
-	const rowData = cy.get('[id=table1]')
+function getRow(table, searchStr) {
+	const rowData = cy.get(table)
 	.contains('td', searchStr)
 	.parent('tr')
 	.children('td')
-	.text()
+	//.text()	// if included, on return, would only return the actual data from the row, rather than locator
 	return rowData;
 } export { getRow };

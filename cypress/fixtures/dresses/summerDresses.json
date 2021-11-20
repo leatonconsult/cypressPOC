@@ -1,0 +1,14 @@
+{
+	"printedChiffonDress": {
+		"name": "Printed Chiffon Dress",
+		"price": "$16.40",
+		"discount": "-20%",
+		"description": "Printed chiffon knee length dress with tank straps. Deep v-neckline",
+		"condition": "New",
+		"dataSheet": {
+			"compositions": "Polyester",
+			"styles": "Girly",
+			"properties": "Midi Dress"
+		}
+	}
+}

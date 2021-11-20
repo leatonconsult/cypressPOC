@@ -26,8 +26,8 @@ beforeEach(function() {
 	// runs before each test in the block
 		cy.fixture('envs').then((env)  => {	
 			cy.log('===== Script Start: ' + env.dev)
-			cy.visit(env.dev)
-			//cy.visit('https://sqengineer.com/practice-sites/practice-tables-selenium/')
+			//cy.visit(env.dev)
+			cy.visit('https://sqengineer.com/practice-sites/practice-tables-selenium/')
 			//cy.visit('demo.automationtesting.in/Datepicker.html')
 	  		})
 	})
