@@ -6,15 +6,15 @@
  * @param fixt - fixture to pass into function
  * check the data from within the fixture is present within table
  */
-Cypress.Commands.add('verifyTableContent', (fixt) => {
+Cypress.Commands.add('verifyTableContent', (table, fixt) => {
 	cy.fixture(fixt).then((fx)  => {
-		cy.get('[id=table1]')
+		cy.get(table)
 		.contains('td', fx.automationTool)
-		//.parent('tr')
-		//.children('td')
-		.siblings() 			//siblings will exclude the item found above. Using .parent .children will get all
+		.parent('tr')
+		.children('td')
+		//.siblings() 			//siblings will exclude the item found above. Using .parent .children will get all
 		.text()
-		//.should('include', fx.automationTool)
+		.should('include', fx.automationTool)
 		.should('include', fx.type)
 	})
 })
