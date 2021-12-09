@@ -16,3 +16,19 @@ function getDate(nDays) {
 		throw new Error('Unable to get date')
 	}
 } export { getDate };
+
+/**
+ * gets array months based on this month - 11
+ * @param m - month to pass in
+ * @returns array of months positioned from this month - 11
+ */
+function getSpendMonth(m) {
+	let i = 0
+	var mon = []
+	while (i > -12) {
+		mon.push(Date.today().addMonths(i).toString("MMM-yyyy").toUpperCase())
+		i--
+	}
+	var monthYr = mon[m]
+	return monthYr
+} export { getSpendMonth};
