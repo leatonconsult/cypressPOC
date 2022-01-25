@@ -17,11 +17,12 @@ function getDate(nDays) {
 	}
 } export { getDate };
 
+
 /**
  * gets array months based on this month - 11
  * @param m - month to pass in
  * @returns array of months positioned from this month - 11
-
+**/
 function getSpendMonth(m) {
 	let i = 0
 	var mon = []
@@ -32,10 +33,15 @@ function getSpendMonth(m) {
 	var monthYr = mon[m]
 	return monthYr
 } export { getSpendMonth};
-**/
 
+
+/**
+ * gets array months based on this month - 11
+ * @param m - month to pass in
+ * @returns array of months positioned from this month - 11
 function getSpendMonth(m) {
 	return Array.from(new Array (12) ).map((_, i) => 
 	Date.today().addMonths(-12+i).toString("MMM-yyyy").toUpperCase() )
 	.find((_, i) => (m === (12-i)))
 } export { getSpendMonth};
+**/

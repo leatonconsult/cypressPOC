@@ -1,5 +1,5 @@
-import { getRow } from "../support/tables";
-import { getSpendMonth} from "../support/date"; 
+import { getRow } from "../../support/tables";
+import { getSpendMonth} from "../../support/date"; 
 
 describe('Tables', () => {
     it('Do Iteration', () => {

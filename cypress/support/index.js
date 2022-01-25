@@ -15,29 +15,22 @@ require('cypress-commands');
 
 import './commands'
 
-//var envs = "envs.json"
-
 before(function() {
 	// runs once before all tests in the block
-		cy.log('===== STARTING SCRIPT =====')
+		cy.log('===== STARTING SUITE =====')
 	})
 	
 beforeEach(function() {
 	// runs before each test in the block
-		cy.fixture('envs').then((env)  => {	
-			cy.log('===== Script Start: ' + env.dev)
-			//cy.visit(env.dev)
-			cy.visit('https://sqengineer.com/practice-sites/practice-tables-selenium/')
-			//cy.visit('demo.automationtesting.in/Datepicker.html')
-	  		})
-	})
-
-after(function() {
-	// runs once after all tests in the block
-		cy.log('===== STOPPING SCRIPT =====')
-	})
+	cy.log('===== Script Start =====')
+})
 
 afterEach(function() {
 	// runs after each test in the block
-		cy.log('===== FINISHED =====')
+		cy.log('===== Script End =====')
+	})
+	
+after(function() {
+	// runs once after all tests in the block
+		cy.log('===== FINISHED SUITE =====')
 	})
