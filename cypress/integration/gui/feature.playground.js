@@ -1,6 +1,34 @@
 import { getRow } from "../../support/tables";
 import { getSpendMonth} from "../../support/date"; 
 
+// Find drop down item by text 
+describe('popupLOV', () => {
+    it('Handling search, find text and click', () => {
+    	cy.visit(Cypress.env('popupLOV'))
+    	
+    	// Click box
+    	cy.get('[id="P2_VACCINE_CENTER"]').click()
+    	
+    	// Get text field and type string
+    	cy.get('[class="a-PopupLOV-search apex-item-text"]').type('Ville de')
+    
+    	// Click search
+    	cy.get('[class="a-Button a-PopupLOV-doSearch"]').click()
+    	
+    	// Find result we want within drop down
+    	cy.get('[class="a-PopupLOV-results a-TMV"]').contains('CENTRE DE VACCINATION - VILLE DE LIMOGES').click()
+    	
+    })
+})
+
+
+
+
+
+
+/**
+ * 
+
 
 // Below will search and check expected content is in the table 
 describe('popupLOV', () => {
@@ -73,3 +101,4 @@ describe('popupLOV', () => {
     	cy.get('[class="a-GV-bdy"]').contains('tr', 'Ville de Pontault Combault').click()
     })
 })
+**/
