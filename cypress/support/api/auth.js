@@ -4,7 +4,7 @@ cypress.Commands.add('getAuthTicket', (user) => {
 	cy.fixture('auth/users').then((u) => {
 		cy.request({
 	        method: 'POST',
-	        url: Cypress.env('api_identity_url'), //get from cypress.env.json
+	        url: Cypress.env('api_endpoint'), //get from cypress.env.json
 	        form: true, //sets to application/x-www-form-urlencoded
 	        username: ('${this.u.user.username}'),
 	        password: ('${this.u.user.password}')
