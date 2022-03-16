@@ -18,24 +18,43 @@ describe("auth", () => {
 				        "key": "56791_3"
 				        }
 			    	};	
-
+		
+		/**		
 	  cy.log(getKey(catAttDefs, "Security"));
 	  cy.log(getKey(catAttDefs, "Nationality"));
 	  cy.log(getKey(catAttDefs, "Community"));
+	  **/
 
+	  /**
 	  // combined with Gateway ID
-	  const securityKey = gatewayId + "_" + getKey(catAttDefs, "Security");
-	  const nationalityKey = gatewayId + "_" + getKey(catAttDefs, "Nationality");
-	  const communityKey = gatewayId + "_" + getKey(catAttDefs, "Community");
+	  const securityKey = gatewayId + "_" + getKey(catAttDefs,"Security");
+	  const nationalityKey = gatewayId + "_" + getKey(catAttDefs,"Nationality");
+	  const communityKey = gatewayId + "_" + getKey(catAttDefs,"Community");
+		**/
+
+	  /**
 	  cy.log(securityKey);
 	  cy.log(nationalityKey);
 	  cy.log(communityKey);
-	
-	const attMap = JSON.stringify(mapCategoryAttributes(catAttDefs));
-	cy.log(attMap);
+	**/
 
+	//const attMap = JSON.stringify(mapCategoryAttributes(catAttDefs));
+	//cy.log(attMap);
+
+	/**
 	const communityK = Object.values(JSON.parse(attMap).find((elem) => elem.Community));
-	cy.log(gatewayId + "_" + communityK + ": WSSCC");
+	cy.log(gatewayId + "_" + communityK + ": Football, Cricket, Tennis");
+	**/
+
+	let uploadAttributes = {
+		[getKey(gatewayId,catAttDefs,"Security")]: "CLASSIFICATION",
+		[getKey(gatewayId,catAttDefs,"Nationality")]: "BRITISH",
+		[getKey(gatewayId,catAttDefs,"Community")]: "FOOTBALL,CRICKET,TENNIS"
+	}
+	cy.log(JSON.stringify(uploadAttributes));
+	//cy.writeFile(Cypress.env('temp')+'/test.json', uploadAttributes);
+	//cy.exec('rm -rf ' + Cypress.env('temp'));
+
 			
 	  
   });
@@ -53,13 +72,14 @@ function mapCategoryAttributes(catAtt) {
 	return(attMap);
 } export { mapCategoryAttributes };
 
+
 /**
  * Get Attribute Key
  * @param {*} attributes - Object - Containing Category Definitions
  * @param {*} name - String - Name of the Attribute we require the key for
  * @returns - Attribute Key - eg. 56791_3
  */
- function getKey(attributes, name) {
+ function getKey(gatewayId, attributes, name) {
 	const key = Object.values(attributes).find((elem) => elem.name === `${name}`)?.key;
-	return(key);
+	return(gatewayId + "_" + key);
 }
