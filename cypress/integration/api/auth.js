@@ -47,9 +47,9 @@ describe("auth", () => {
 	**/
 
 	let uploadAttributes = {
-		[getKey(gatewayId,catAttDefs,"Security")]: "CLASSIFICATION",
-		[getKey(gatewayId,catAttDefs,"Nationality")]: "BRITISH",
-		[getKey(gatewayId,catAttDefs,"Community")]: "FOOTBALL,CRICKET,TENNIS"
+		[getKey(catAttDefs,"Security")]: "CLASSIFICATION",
+		[getKey(catAttDefs,"Nationality")]: "BRITISH",
+		[getKey(catAttDefs,"Community")]: "FOOTBALL,CRICKET,TENNIS"
 	}
 	cy.log(JSON.stringify(uploadAttributes));
 	//cy.writeFile(Cypress.env('temp')+'/test.json', uploadAttributes);
@@ -79,7 +79,7 @@ function mapCategoryAttributes(catAtt) {
  * @param {*} name - String - Name of the Attribute we require the key for
  * @returns - Attribute Key - eg. 56791_3
  */
- function getKey(gatewayId, attributes, name) {
+ function getKey(attributes, name) {
 	const key = Object.values(attributes).find((elem) => elem.name === `${name}`)?.key;
-	return(gatewayId + "_" + key);
+	return(key);
 }

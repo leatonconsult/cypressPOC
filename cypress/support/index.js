@@ -15,22 +15,22 @@ require('cypress-commands');
 
 import './commands'
 
-before(function() {
+before(function () {
 	// runs once before all tests in the block
-		cy.log('===== STARTING SUITE =====')
-	})
-	
-beforeEach(function() {
+	cy.log('===== STARTING SUITE =====')
+})
+
+beforeEach(function () {
 	// runs before each test in the block
 	cy.log('===== Script Start =====')
 })
 
-afterEach(function() {
+afterEach(function () {
 	// runs after each test in the block
-		cy.log('===== Script End =====')
-	})
-	
-after(function() {
+	cy.log('===== Script End =====')
+})
+
+after(function () {
 	// runs once after all tests in the block
-		cy.log('===== FINISHED SUITE =====')
-	})
+	cy.log('===== FINISHED SUITE =====')
+})
