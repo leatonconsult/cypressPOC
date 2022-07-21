@@ -1,5 +1,3 @@
-
-const response = 200;
 const users = ["user1", "user2", "user3"]
 const runLog = 'cypress/fixtures/runtime/runlog.csv'
 
@@ -18,12 +16,23 @@ describe('Write to CSV', () => {
 });
 
 /**
- * Function to Log User Create
- * @param {*} user - User to Create
+ * Function - Create User
+ * @param {*} userData - User Data used to Create
 **/
 function create(userData) {
     const user = userData.split(',')[0];
     cy.log("**Attemping to Create user:** " + user);
-    cy.writeFile('cypress/fixtures/runtime/runlog.csv', `${user},${response}\n`,{flag: 'a+'});
+    // DO STUFF
+    const response = 200;
     cy.log("**User Created:** **" + user + "** - " + userData);
+    logCreate(user, response);
+};
+
+/**
+ * Function - Log User Creation to File (runLog)
+ * @param {*} user - username
+ * @param {*} response - response from create
+**/
+function logCreate(user, response){
+    cy.writeFile(runLog, `${user},${response}\n`,{flag: 'a+'});
 };
