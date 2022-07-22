@@ -16,7 +16,7 @@ function getDate(nDays) {
 		throw new Error('Unable to get date')
 	}
 } export { getDate };
-
+ 
 
 /**
  * gets array months based on this month - 11

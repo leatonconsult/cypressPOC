@@ -1,17 +1,21 @@
-const users = ["user1", "user2", "user3"]
-const runLog = 'cypress/fixtures/runtime/runlog.csv'
+const runLog = 'cypress/fixtures/runtime/runlog.csv';
 
-describe('Write to CSV', () => {
-    it('Setup File', () => {
-        cy.writeFile(runLog, 'user,response\n');
-        cy.log("**Run Log Created:** " + runLog);
-    });
-    it('Create Users', () => {
+/**
+ * Create users via OTDS
+**/
+describe('JMeter', () => {
+    it('Create Users via OTDS', () => {
         cy.log("**-=-=- Start of Create Script -=-=-**");
-        cy.fixture('users/userCSV.csv').then((userData) => {
-            userData.split('\n').forEach(create);
+        cy.log("**Start time:** " + Date().split("GMT")[0]);
+        cy.log("**Log location:** " + runLog);
+        cy.writeFile(runLog, `Start: ${Date().split("GMT")[0]}\nUSER,RESPONSE,TIMESTAMP\n`);    // Write Header to log file
+        cy.fixture('users/userCSV.csv').then((userData) => {                                    // Read user data
+            userData.split('\n').forEach(create);                                               // For each line, create(userData)
+        }).then(() => {
+            cy.writeFile(runLog, `Finish: ${Date().split("GMT")[0]}`, { flag: 'a+' });          // Write finish time to log file
+            cy.log("**Finish time:** " + Date().split("GMT")[0]);
+            cy.log("**-=-=- End of Create Script -=-=-**");
         });
-        cy.log("**-=-=- End of Create Script -=-=-**");
     });
 });
 
@@ -22,17 +26,10 @@ describe('Write to CSV', () => {
 function create(userData) {
     const user = userData.split(',')[0];
     cy.log("**Attemping to Create user:** " + user);
-    // DO STUFF
-    const response = 200;
-    cy.log("**User Created:** **" + user + "** - " + userData);
-    logCreate(user, response);
-};
-
-/**
- * Function - Log User Creation to File (runLog)
- * @param {*} user - username
- * @param {*} response - response from create
-**/
-function logCreate(user, response){
-    cy.writeFile(runLog, `${user},${response}\n`,{flag: 'a+'});
+    // DO STUFF WITH API
+    const response = 200                                                                        // mimics API response
+    cy.log("**User Created:** **" + user + "** - " + userData).then(() => {                     // .then after API calls
+        cy.writeFile(runLog, `${user},${response},${Date().split("GMT")[0]}\n`, { flag: 'a+' });// Write to log file
+        cy.wait(500);                                                                           // TEST PURPOSES
+    });
 };
