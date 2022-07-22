@@ -1,4 +1,5 @@
 const runLog = 'cypress/fixtures/runtime/runlog.csv';
+const response = 200;                // TEST PURPOSES
 
 /**
  * Create users via ODS
@@ -8,11 +9,11 @@ describe('JMeter', () => {
         cy.log("**-=-=- Start of Create Script -=-=-**");
         cy.log("**Start time:** " + Date().split("GMT")[0]);
         cy.log("**Log location:** " + runLog);
-        cy.writeFile(runLog, `Start: ${Date().split("GMT")[0]}\nUSER,RESPONSE,TIMESTAMP\n`);    
+        cy.writeFile(runLog, `Start: ${Date().split("GMT")[0]}\nUSER,ACTION,RESPONSE,TIMESTAMP\n`);
         cy.fixture('users/userCSV.csv').then((userData) => {
             userData.split('\n').forEach(create);
         }).then(() => {
-            cy.writeFile(runLog, `Finish: ${Date().split("GMT")[0]}`, { flag: 'a+' });          
+            cy.writeFile(runLog, `Finish: ${Date().split("GMT")[0]}`, { flag: 'a+' });
             cy.log("**Finish time:** " + Date().split("GMT")[0]);
             cy.log("**-=-=- End of Create Script -=-=-**");
         });
@@ -20,18 +21,52 @@ describe('JMeter', () => {
 });
 
 /**
- * Function - ODS API - Create User
+ * Function - ODS API - Create engine
  * @param {*} userData - User Data used to Create
 **/
 function create(userData) {
-    const user = userData.split(',')[0];
-    cy.log("**Attemping to Create user:** " + user);
+    const userParsed = userData.split(',');
+    const username = userParsed[0];
+    cy.log("**Attemping to Create user:** " + username);
     // DO STUFF WITH API
-    const response = 200        // TEST PURPOSES
-    const apiAction = "CREATE"; // Assumption - multiple API calls 
-    cy.log("**User Created:** **" + user + "** - " + userData).then(() => {  
-        logger(user,apiAction,response,Date().split("GMT")[0]);  // Call after each API action, eg. Create, Roles, Groups etc
-        cy.wait(500);           // TEST PURPOSES                                                           
+    createUser(username, userData);
+    addUserGroups(username, userParsed[1]);
+    addUserRoles(username, userParsed[2]);
+};
+
+/**
+ * Function sets up user in O
+ * @param {*} user - String - Username
+ * @param {*} userData - String - User data from .csv
+**/
+function createUser(user, userData) {
+    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
+        logger(user, "CREATE", response, Date().split("GMT")[0]);
+        cy.log("**User Created:** **" + user + "** - " + userData);
+    });                  
+};
+
+/**
+ * Function Adds User to Groups
+ * @param {*} user - String - Username
+ * @param {*} groups - String - Groups to add User to
+ */
+function addUserGroups(user, groups) {
+    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
+        logger(user, "GROUPS", response, Date().split("GMT")[0]);
+        cy.log("**User Added to Groups:** **" + user + "** - " + groups);
+    });
+};
+
+/**
+ * Function Adds Roles to User
+ * @param {*} user - String - Username
+ * @param {*} roles - String - Roles to add User to
+**/
+function addUserRoles(user, roles) {
+    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
+        logger(user, "ROLES", response, Date().split("GMT")[0]);
+        cy.log("**User Roles Added:** **" + user + "** - " + roles);
     });
 };
 
@@ -40,7 +75,8 @@ function create(userData) {
  * @param {*} user - username
  * @param {*} action - API action
  * @param {*} response - response from create
+ * @param {*} timestamp - timestamp for log entry
 **/
-function logger(user, action, response, timestamp){
-    cy.writeFile(runLog, `${user},${action},${response},${timestamp}\n`,{flag: 'a+'});
+function logger(user, action, response, timestamp) {
+    cy.writeFile(runLog, `${user},${action},${response},${timestamp}\n`, { flag: 'a+' });
 };
