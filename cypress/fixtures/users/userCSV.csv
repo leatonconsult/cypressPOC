@@ -1,7 +1,7 @@
 user1,Project,Duser,O,UK,US,AUS,CAN,NZ
-user2,Adminstrator,Admin,S,,US,,,
-user3,Project,Duser,TS,UK,,,,
-user4,Project,Admin,TS,,,AUS,,
+user2,Adminstrator,Admin,S,,US,,CAN,
+user3,Project,Duser,TS,UK,US,,,
+user4,Project,Admin,TS,,,AUS,,NZ
 user5,Project,BA,TS,,,,CAN,
 user6,Pheonix,Puser,TS,,,,,NZ
 user7,Pheonix,Test,O,UK,US,AUS,CAN,NZ

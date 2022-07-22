@@ -21,53 +21,67 @@ describe('JMeter', () => {
 });
 
 /**
- * Function - ODS API - Create engine
+ * Function - Create engine
  * @param {*} userData - User Data used to Create
 **/
 function create(userData) {
-    const userParsed = userData.split(',');
-    const username = userParsed[0];
+    const userDataParsed = userData.split(',');
+    const username = userDataParsed[0];
     cy.log("**Attemping to Create user:** " + username);
     // DO STUFF WITH API
-    createUser(username, userData);             // API - Initial Create user
-    addUserGroups(username, userParsed[1]);     // API - Add User to Groups
-    addUserRoles(username, userParsed[2]);      // API - Add Roles to User
+    createUser(username, userData);                 // API - Initial Create user
+    addUserGroups(username, userDataParsed[1]);         // API - Add User to Groups
+    addUserRoles(username, userDataParsed[2]);          // API - Add Roles to User
+    addUserNationalities(username, userDataParsed.splice(4,5,6,7,8));  // API - Add Nationalities to User       // .splice() gets from array
 };
 
 /**
- * Function sets up user in O
+ * ODS API - Function sets up User in O
  * @param {*} user - String - Username
  * @param {*} userData - String - User data from .csv
 **/
 function createUser(user, userData) {
-    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
+    cy.wait(200).then(() => {   // TEST PURPOSES - Replace with API call .then
         logger(user, "CREATE", response, Date().split("GMT")[0]);
         cy.log("**User Created:** **" + user + "** - " + userData);
     });                  
 };
 
 /**
- * Function Adds User to Groups
+ * ODS API - Function Adds User to Groups
  * @param {*} user - String - Username
  * @param {*} groups - String - Groups to add User to
  */
 function addUserGroups(user, groups) {
-    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
-        logger(user, "GROUPS", response, Date().split("GMT")[0]);
-        cy.log("**User Added to Groups:** **" + user + "** - " + groups);
+    cy.wait(200).then(() => {   // TEST PURPOSES - Replace with API call .then
+        logger(user, "GROUPS - " + groups, response, Date().split("GMT")[0]);
+        cy.log("**" + user + " added to Groups:** " + groups);
     });
 };
 
 /**
- * Function Adds Roles to User
+ * ODS API - Function Adds Roles to User
  * @param {*} user - String - Username
  * @param {*} roles - String - Roles to add User to
 **/
 function addUserRoles(user, roles) {
-    cy.wait(350).then(() => {   // TEST PURPOSES - Replace with API call
-        logger(user, "ROLES", response, Date().split("GMT")[0]);
-        cy.log("**User Roles Added:** **" + user + "** - " + roles);
+    cy.wait(200).then(() => {   // TEST PURPOSES - Replace with API call .then
+        logger(user, "ROLES - " + roles, response, Date().split("GMT")[0]);
+        cy.log("**" + user + " Roles added:** " + roles);
     });
+};
+
+/**
+ * ODS API - Function Adds Nationalities to User
+ * @param {*} user - String - Username
+ * @param {*} nationalities - String - Nationalities to add User to
+**/
+function addUserNationalities(user, nationalities) {  
+    const natsParsed = nationalities.filter(Boolean);   // Removes nulls / blanks
+    cy.wait(200).then(() => {   // TEST PURPOSES - Replace with API call .then
+        logger(user, "NATS - " + natsParsed, response, Date().split("GMT")[0]);
+        cy.log("**" + user + " Nationalities added:** " + natsParsed);    
+    })
 };
 
 /**
@@ -78,5 +92,5 @@ function addUserRoles(user, roles) {
  * @param {*} timestamp - timestamp for log entry
 **/
 function logger(user, action, response, timestamp) {
-    cy.writeFile(runLog, `${user},${action},${response},${timestamp}\n`, { flag: 'a+' });
+    cy.writeFile(runLog, `${user},${action},${response},${timestamp}\n`, { flag: 'a+' });   // flag appends
 };
