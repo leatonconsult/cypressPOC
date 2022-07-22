@@ -81,7 +81,7 @@ function addUserNationalities(user, nationalities) {
     cy.wait(200).then(() => {   // TEST PURPOSES - Replace with API call .then
         logger(user, "NATS - " + natsParsed, response, Date().split("GMT")[0]);
         cy.log("**" + user + " Nationalities added:** " + natsParsed);    
-    })
+    });
 };
 
 /**
